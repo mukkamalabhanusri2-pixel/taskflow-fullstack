@@ -1,0 +1,175 @@
+/* =============================================
+   TaskFlow Global Styles
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CSS Custom Properties (Light & Dark Mode)
+   ============================================================ */
+:root {
+  --bg-primary: #f4f6fb;
+  --bg-card: #ffffff;
+  --bg-sidebar: #ffffff;
+  --text-primary: #0f1117;
+  --text-secondary: #5c6070;
+  --text-muted: #9ca3af;
+  --border-color: #e8eaed;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+  --accent: #6366f1;
+  --accent-light: #eef2ff;
+}
+
+.dark {
+  --bg-primary: #0d0f18;
+  --bg-card: #161925;
+  --bg-sidebar: #111420;
+  --text-primary: #f1f3f9;
+  --text-secondary: #9ba3b8;
+  --text-muted: #6b7280;
+  --border-color: #252836;
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+  --accent: #818cf8;
+  --accent-light: #1e1f3b;
+}
+
+/* ============================================================
+   Base Styles
+   ============================================================ */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ============================================================
+   Scrollbar Styles
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+
+/* ============================================================
+   Custom Utility Classes
+   ============================================================ */
+@layer components {
+  .card {
+    @apply bg-white dark:bg-[#161925] rounded-2xl border border-[#e8eaed] dark:border-[#252836] shadow-card;
+  }
+
+  .btn-primary {
+    @apply bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-4 py-2.5 rounded-xl 
+           transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed
+           flex items-center gap-2 justify-center;
+  }
+
+  .btn-secondary {
+    @apply bg-indigo-50 dark:bg-indigo-900/20 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 
+           text-indigo-600 dark:text-indigo-400 font-medium px-4 py-2.5 rounded-xl 
+           transition-all duration-200 flex items-center gap-2 justify-center;
+  }
+
+  .btn-ghost {
+    @apply hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-600 dark:text-gray-400
+           font-medium px-3 py-2 rounded-lg transition-all duration-200 flex items-center gap-2;
+  }
+
+  .btn-danger {
+    @apply bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40
+           text-red-600 dark:text-red-400 font-medium px-4 py-2.5 rounded-xl
+           transition-all duration-200 flex items-center gap-2 justify-center;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-[#e8eaed] dark:border-[#252836]
+           bg-white dark:bg-[#1a1d27] text-gray-800 dark:text-gray-200
+           placeholder:text-gray-400 dark:placeholder:text-gray-600
+           focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-500
+           transition-all duration-200 text-sm;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-lg text-xs font-semibold;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+           text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800
+           transition-all duration-200 cursor-pointer;
+  }
+
+  .sidebar-link.active {
+    @apply bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400;
+  }
+}
+
+/* ============================================================
+   Priority Badge Colors
+   ============================================================ */
+.priority-high {
+  @apply bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400;
+}
+.priority-medium {
+  @apply bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400;
+}
+.priority-low {
+  @apply bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400;
+}
+
+/* Status badge colors */
+.status-pending {
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400;
+}
+.status-in-progress {
+  @apply bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400;
+}
+.status-completed {
+  @apply bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400;
+}
+
+/* ============================================================
+   Loading Skeleton Animation
+   ============================================================ */
+.skeleton {
+  @apply bg-gray-200 dark:bg-gray-700 rounded-lg animate-pulse;
+}
+
+/* ============================================================
+   Modal Backdrop
+   ============================================================ */
+.modal-backdrop {
+  @apply fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4;
+}
+
+/* ============================================================
+   Page Transitions
+   ============================================================ */
+.page-enter {
+  animation: fadeIn 0.3s ease-out;
+}
